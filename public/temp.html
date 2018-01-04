@@ -1,0 +1,40 @@
+<!--<template>
+  <style>
+    .warning {
+      color: red;
+      font-weight: bold;
+      border-bottom: 1px dotted blue;
+    }
+  </style>
+  <shadow>
+    <p class"warning">This is the shadow DOM</p>
+  </shadow>
+</template>-->
+
+<template>
+  <style>
+.warning {
+  color: red;
+  font-weight: bold;
+  border-bottom: 1px dotted blue;
+}
+  </style>
+  <p class="warning">This is the shadow DOM
+</template>
+<script>
+(function() {
+  var thisDoc = document.currentScript.ownerDocument;
+  var xElement = document.registerElement("styled-component", {
+    prototype: Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var root = this.createShadowRoot();
+          var template = thisDoc.querySelector("template");
+          var content = thisDoc.importNode(template.content, true);
+          root.appendChild(content);
+        }
+      }
+    })
+  });
+})();
+</script>

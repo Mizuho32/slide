@@ -1,0 +1,3 @@
+vim server.rb public/{index.html,shadow.js,slide.html}
+
+bundle exec ./server.rb /dev/pts/12

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>&lt;hello-world&gt;</title>
+    <!--<link rel="import" href="hello3.html" />-->
+
+</head>
+<body>
+<template>
+  <h1>Hello :)</h1>
+  <p>Hello <strong></strong> :)</p>
+</template>
+
+<script>
+(function(window, document, undefined) {
+    // Refers to the "importer", which is index.html
+    var thatDoc = document;
+
+    // Refers to the "importee", which is src/hello-world.html
+    var thisDoc =  (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+
+    // Gets content from <template>
+    var template = thisDoc.querySelector('template').content;
+
+    // Creates an object based in the HTML Element prototype
+    var MyElementProto = Object.create(HTMLElement.prototype);
+
+    // Fires when an instance of the element is created
+    MyElementProto.createdCallback = function() {
+
+        // Adds a template clone into shadow root
+        var clone = thatDoc.importNode(template, true);
+        this.appendChild(clone);
+
+        this.querySelector("p").onclick = ()=>{ console.log("HI"); };
+
+    };
+
+
+    // Registers <hello-world> in the main document
+    window.MyElement = thatDoc.registerElement('hello-world', {
+        prototype: MyElementProto
+    });
+})(window, document);
+</script>
+
+    <!-- Runs custom element -->
+    <hello-world who="Unicorn"></hello-world>
+    <h1>This is a normal</h1>
+    <p>This is a normal</p>
+
+</body>
+</html>

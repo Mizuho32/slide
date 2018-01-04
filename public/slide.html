@@ -1,0 +1,46 @@
+<template>
+  <style>
+  </style>
+  <div class="view">
+    <div class="ui">
+      <div class="buttons">
+        <span class="fa fa-arrows" onmousedown="movestart(this)"></span>
+        <span class="fa fa-pencil" onclick="edit(this)"></span>
+      </div>
+    </div>
+    <script src="js/ui.js"></script>
+    <div class="shadow-container">
+    <div class="shadow">
+      <style>
+div#header, div#content {
+  margin-left: unset;
+  margin-right: unset;
+}
+#view-content:hover {
+}
+/*
+#view-content {
+  transform: scale(1.5, 0.5);
+  transform-origin: top left;
+}
+:host {
+  opacity: 0.4;
+  transition: opacity 420ms ease-in-out;
+}
+:host(:hover) {
+  opacity: 1;
+}
+:host(:active) {
+  position: relative;
+  top: 3px;
+  left: 3px;
+}*/
+      </style>
+      <div id="view-content">
+      </div>
+
+    </div>
+    </div>
+  </div>
+</template>
+<script src="shadow.js" name="slide-view"></script>

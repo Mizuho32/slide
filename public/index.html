@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>slide</title>
+    <link rel="import" href="slide.html" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <script>
+function test(t) {
+  console.log("Hello", t);
+}
+    </script>
+    <span onmousedown="test(this)">Hello This is a test</span>
+    <slide-view id="s1"></slide-view>
+    <!--<slide-view id="s2"></slide-view>-->
+    <script type="text/javascript">
+    var share = {};
+    window.onload = ()=>{
+    //setTimeout(()=>{
+      // https://stackoverflow.com/questions/29629492/how-to-query-elements-within-shadow-dom-from-outside-in-dart
+      var slide1 = document
+                    .getElementById("s1")
+                    .getElementsByClassName("shadow")[0]
+                    .shadowRoot.getElementById("view-content");
+      /*var slide2 = document
+                    .getElementById("s2")
+                    .getElementsByClassName("shadow")[0]
+                    .shadowRoot.getElementById("view-content");*/
+      var ws = new WebSocket("ws://localhost:8080");
+      share.ws = ws;
+      ws.onopen = ()=> {
+        ws.send("load");
+      }
+
+      ws.onmessage = (msg)=> {
+        //slide1.innerHTML = msg.data.replace(/^load:/, "");
+        //slide2.innerHTML = msg.data.replace(/^load:/, "");
+      };
+      slide1.innerHTML = `
+        <meta charset="UTF-8">
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Asciidoctor 1.5.6.1">
+        <title>Hello</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+        <link rel="stylesheet" href="./asciidoctor.css">
+
+
+        <div id="header">
+          <h1>Hello</h1>
+        </div>
+        <div id="content">
+          <div class="sect1">
+            <h2 id="_this_is_a_test">This is a test</h2>
+            <div class="sectionbody"></div>
+          </div>
+        </div>`;
+    //},1500);
+    }
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

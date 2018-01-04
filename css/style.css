@@ -1,0 +1,39 @@
+#s1 > div.view > div > div.shadow {
+  transform: scale(1, 0.5);
+  transform-origin: top left;
+  /*max-height: 50px;
+  position: relative;*/
+}
+#s1 > div.view > div.shadow-container {
+  border:   solid 1px rgba(0,0,0,0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#s1 > div.view > div.shadow-container:hover {
+  border: solid 1px blue;
+}
+slide-view > div.view {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+slide-view > div.view:hover > div.ui {
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+slide-view > div.view > div.ui {
+  display: none;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+slide-view {
+  width:100%;
+  height:50%;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+}
